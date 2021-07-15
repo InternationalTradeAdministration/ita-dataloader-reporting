@@ -34,6 +34,18 @@
               <option value='QTY'>QTY</option>
             </select>
           </div>
+          <div class="filter-field" v-if="reportName.includes('Export')">
+            <label for="displayIn">Display In:</label>
+            <select
+              v-model="displayIn"
+              name="displayIn"
+              id="displayIn"
+              size="2"
+            >
+              <option value='DOLLARS'>DOLLARS</option>
+              <option value='UNITS'>UNITS</option>
+            </select>
+          </div>
           <div class="filter-field" v-else>
             <label for="displayIn">Display In:</label>
             <select

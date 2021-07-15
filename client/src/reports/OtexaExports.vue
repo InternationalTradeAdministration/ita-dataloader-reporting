@@ -317,8 +317,8 @@ export default {
     if (this.source == 'EXPORT_FOOTWEAR') {
       this.categories = await this.repository.getOtexaCategories(this.source)
     }
-
     this.countries = await this.repository.getOtexaCountries(this.source)
+    this['CountryGroups'] = this.countries.filter(country => country.ctryGroup === 'Country Groups')
     let AFRICA = this.countries.filter(country => country.ctryGroup === 'Africa')
     this['Africa'] = uniqNames(AFRICA, "ctryDescription")
     let ASIA = this.countries.filter(country => country.ctryGroup === 'Asia')
@@ -333,6 +333,7 @@ export default {
     this['SouthAmerica'] = uniqNames(SAMERICA, "ctryDescription")
 
     this.chapters = await this.repository.getScheduleBChapters(this.source)
+    this.chapters = this.chapters.filter(chapter => chapter.longChapter.length >3)
 
     if (this.reportName.includes('Monthly') && this.reportName.includes('Footwear')) {
       this.years = await this.repository.getOtexaMonthlyYears('MONTHLY_FOOTWEAR')
